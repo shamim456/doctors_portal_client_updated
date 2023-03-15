@@ -32,7 +32,7 @@ const ourServices = [
 const Services = () => {
   return (
     <div className="text-center mt-32">
-      <h2 className="text-primary font-bold text-lg mx-auto">Our Services</h2>
+      <h2 className="text-primary font-bold text-lg ">Our Services</h2>
       <h1 className="text-4xl mx-auto text-accent">Services We Provide</h1>
       <div className="w-full grid gap-6  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto">
         {ourServices.map((service) => (

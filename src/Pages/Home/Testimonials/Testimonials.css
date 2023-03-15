@@ -1,0 +1,6 @@
+.testimonials-container {
+  background-image: url("../../../assets//icons/quote.svg");
+  background-repeat: no-repeat;
+  background-size: 192px 156px;
+  background-position: right top;
+}
