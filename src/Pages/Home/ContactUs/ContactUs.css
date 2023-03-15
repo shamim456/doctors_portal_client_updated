@@ -1,0 +1,11 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.contact-container {
+    background-image: url('../../../assets/images/appointment.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: 149px;
+
+}
