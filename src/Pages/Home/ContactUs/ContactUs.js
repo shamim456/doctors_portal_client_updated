@@ -25,7 +25,7 @@ const ContactUs = () => {
             ></textarea>
             <input
               type="submit"
-              className="mt-4 btn btn-primary bg-gradient-to-r from-primary to-secondary text-white mt-[155px]"
+              className="btn btn-primary bg-gradient-to-r from-primary to-secondary text-white mt-[50px]"
             />
           </form>
         </div>
