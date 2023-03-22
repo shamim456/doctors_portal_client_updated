@@ -1,36 +1,33 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider";
 
-const Login = () => {
-  const [loginError, setLoginError] = useState("");
-  //for redirect private route
-  const location = useLocation();
-  const navigate = useNavigate();
-  const from = location.state?.from?.pathname || "/";
-  console.log(from);
-
-  // for react hook form
+const SignUp = () => {
+  const [signUpError, setSignUpError] = useState("");
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
 
-  const { signIn } = useContext(AuthContext);
+  const { createUser, updateUser } = useContext(AuthContext);
 
-  // login handler
-  const handleLogIn = (data) => {
-    setLoginError("");
-
-    console.log(data);
-    signIn(data.email, data.password)
+  const handleSignUp = (data) => {
+    setSignUpError("");
+    createUser(data.email, data.password)
       .then((result) => {
-        console.log(result.user);
-        navigate(from, { replace: true });
+        const user = result.user;
+        toast.success("User Created Successfully");
+        const userInfo = {
+          displayName: data.name,
+        };
+        updateUser(userInfo)
+          .then(() => {})
+          .catch((err) => console.log(err));
       })
-      .catch((err) => setLoginError(err.message));
+      .catch((err) => setSignUpError(err.message));
   };
   return (
     <div className="text-center h-screen">
@@ -40,8 +37,29 @@ const Login = () => {
           <div className="card-body">
             <div className="flex flex-col w-full border-opacity-50">
               {/* react hook form */}
-              <form onSubmit={handleSubmit(handleLogIn)}>
-                {/* name or email input */}
+              <form onSubmit={handleSubmit(handleSignUp)}>
+                {/* name input */}
+                <label className="label">
+                  <span className="label-text">Name</span>
+                </label>
+                <input
+                  {...register("name", {
+                    required: "Required Name",
+                    minLength: {
+                      value: 4,
+                      message: "Name Must Be  4 Character Or Longer",
+                    },
+                  })}
+                  placeholder="Your Password"
+                  className="input input-bordered w-full max-w-xs"
+                  type="text"
+                />
+                <label className="label">
+                  <span className="label-text-alt text-red-600">
+                    {errors?.name?.message}
+                  </span>
+                </label>
+                {/* email input */}
                 <label className="label">
                   <span className="label-text">Email</span>
                 </label>
@@ -70,7 +88,7 @@ const Login = () => {
                     required: "Required Password",
                     minLength: {
                       value: 8,
-                      message: "Password Must BE  8 Character Or Longer",
+                      message: "Password Must Be  8 Character Or Longer",
                     },
                     pattern: {
                       value: /(?=.*?[#?!@$%^&*-])/i,
@@ -82,21 +100,22 @@ const Login = () => {
                   type="password"
                 />
 
-                {/* for react hook form error */}
+                {/* react hook form error */}
                 <label className="label">
                   <span className="label-text-alt text-red-600">
                     {errors?.password?.message}
                   </span>
                 </label>
 
-                {/* for login error */}
-                {loginError && (
+                {/* firebase signup error */}
+                {signUpError && (
                   <label className="label">
                     <span className="label-text-alt text-red-600">
-                      {loginError.split("/")[1].toUpperCase()}
+                      {signUpError?.split("/")[1]}
                     </span>
                   </label>
                 )}
+
                 <label className="label">
                   <span className="label-text-alt">
                     forget password Left label
@@ -106,15 +125,11 @@ const Login = () => {
                 <input
                   className="btn btn-accent w-full"
                   type="submit"
-                  value="Login"
+                  value="Sign Up"
                 />
-                <p>
+                <p className="text-secondary">
                   <small>
-                    {" "}
-                    New to Doctors Portal?{" "}
-                    <span className="text-secondary">
-                      <Link to="/signup">Create An Account</Link>
-                    </span>
+                    <Link to="/login">already have an account?</Link>
                   </small>
                 </p>
               </form>
@@ -129,4 +144,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
