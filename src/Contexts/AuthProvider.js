@@ -22,11 +22,10 @@ const AuthProvider = ({ children }) => {
 
   // update user profile
   const updateUser = (userInfo) => {
-    updateProfile(user, userInfo);
-    setLoading(false);
+    return updateProfile(auth.currentUser, userInfo);
   };
 
-  //   for sign in
+  // for sign in
   const signIn = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);

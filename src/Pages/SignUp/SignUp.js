@@ -1,33 +1,63 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider";
 
 const SignUp = () => {
   const [signUpError, setSignUpError] = useState("");
+
+  // react hook form
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
 
+  // firebase
   const { createUser, updateUser } = useContext(AuthContext);
 
+  // react-router
+  const navigate = useNavigate();
+
+  // const handleSignUp = (data) => {
+  //   setSignUpError("");
+  //   createUser(data.email, data.password)
+  //     .then((result) => {
+  //       // const user = result.user;
+  //       toast.success("User Created Successfully");
+  //       const userInfo = {
+  //         displayName: data.name,
+  //       };
+  //       updateUser(userInfo)
+  //         .then(() => {
+  //           navigate("/");
+  //           console.log('fuck')
+  //         })
+  //         .catch((err) => console.log(err));
+  //     })
+  //     .catch((err) => setSignUpError(err.message));
+  // };
   const handleSignUp = (data) => {
     setSignUpError("");
     createUser(data.email, data.password)
       .then((result) => {
         const user = result.user;
-        toast.success("User Created Successfully");
+        console.log(user);
+        toast("User Created Successfully.");
         const userInfo = {
           displayName: data.name,
         };
         updateUser(userInfo)
-          .then(() => {})
+          .then(() => {
+            navigate("/");
+            console.log("fuck");
+          })
           .catch((err) => console.log(err));
       })
-      .catch((err) => setSignUpError(err.message));
+      .catch((error) => {
+        setSignUpError(error.message);
+      });
   };
   return (
     <div className="text-center h-screen">
