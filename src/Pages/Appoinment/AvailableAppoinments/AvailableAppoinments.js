@@ -6,13 +6,16 @@ import BookingModal from "../BookingModal/BookingModal";
 import Appointment from "./Appointment";
 
 const AvailableAppoinments = ({ selectedDate, setSelectedDate }) => {
-  // const [appoinmentOptions, setAppoinmentOptions] = useState([]);
   const [treatment, setTreatment] = useState(null);
 
   const date = format(selectedDate, "PP");
 
   // react query
-  const { data: appoinmentOptions, isLoading, refetch } = useQuery({
+  const {
+    data: appoinmentOptions,
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["appoinmentOptions", date],
     queryFn: async () => {
       const res = await fetch(
@@ -27,11 +30,6 @@ const AvailableAppoinments = ({ selectedDate, setSelectedDate }) => {
     return <Loading></Loading>;
   }
 
-  // useEffect(() => {
-  //   fetch("http://localhost:5000/appointmentOptions")
-  //     .then((res) => res.json())
-  //     .then((date) => setAppoinmentOptions(date.result));
-  // }, []);
   console.log(appoinmentOptions);
   return (
     <section className="mt-16">
