@@ -1,14 +1,20 @@
 import { format } from "date-fns";
-import React from "react";
+import React, { useContext } from "react";
+import { toast } from "react-hot-toast";
+import { AuthContext } from "../../../Contexts/AuthProvider";
 
-const BookingModal = ({ treatment, selectedDate, setTreatment }) => {
+const BookingModal = ({ treatment, selectedDate, setTreatment, refetch }) => {
   const { name, slots } = treatment; // it's appointment details
-  const date = format(selectedDate, "PP");
+  const date = format(selectedDate, "PP"); // formated date
+
+  // firebase user info
+  const { user } = useContext(AuthContext);
+  console.log(user);
 
   const handleModel = (e) => {
     e.preventDefault();
     const form = e.target;
-    const treatmentNmae = name;
+    const treatmentName = name;
     const appoinmentDate = form.date.value;
     const slot = form.slot.value;
     const patientName = form.patientName.value;
@@ -16,16 +22,33 @@ const BookingModal = ({ treatment, selectedDate, setTreatment }) => {
     const patientPhoneNumber = form.phoneNumber.value;
 
     const bookingInfo = {
-      treatmentNmae,
+      treatmentName,
       appoinmentDate,
       slot,
       patientName,
       patientEmail,
       patientPhoneNumber,
     };
-    console.log(bookingInfo);
-    setTreatment(null);
-    form.reset();
+
+    fetch("http://localhost:5000/bookingTreatment", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(bookingInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.result) {
+          toast.success(data.result);
+        }
+        if (data.error) {
+          toast.error(data.error);
+        }
+        setTreatment(null);
+        refetch();
+        form.reset();
+      });
   };
   return (
     <>
@@ -59,12 +82,16 @@ const BookingModal = ({ treatment, selectedDate, setTreatment }) => {
               placeholder="Your Name..."
               className="input input-bordered w-full "
               name="patientName"
+              defaultValue={user?.displayName}
+              disabled
             />
             <input
               type="text"
               placeholder="Your Email..."
               className="input input-bordered w-full"
               name="email"
+              defaultValue={user?.email}
+              disabled
             />
             <input
               type="text"

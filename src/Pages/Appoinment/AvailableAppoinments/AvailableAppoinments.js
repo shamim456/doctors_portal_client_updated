@@ -9,11 +9,15 @@ const AvailableAppoinments = ({ selectedDate, setSelectedDate }) => {
   // const [appoinmentOptions, setAppoinmentOptions] = useState([]);
   const [treatment, setTreatment] = useState(null);
 
+  const date = format(selectedDate, "PP");
+
   // react query
-  const { data: appoinmentOptions, isLoading } = useQuery({
-    queryKey: ["appoinmentOptions"],
+  const { data: appoinmentOptions, isLoading, refetch } = useQuery({
+    queryKey: ["appoinmentOptions", date],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/appointmentOptions");
+      const res = await fetch(
+        `http://localhost:5000/appointmentOptions?date=${date}`
+      );
       const data = await res.json();
       return data.result;
     },
@@ -50,6 +54,7 @@ const AvailableAppoinments = ({ selectedDate, setSelectedDate }) => {
           selectedDate={selectedDate}
           treatment={treatment}
           setTreatment={setTreatment}
+          refetch={refetch}
         ></BookingModal>
       )}
     </section>
