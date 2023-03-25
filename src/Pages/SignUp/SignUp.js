@@ -38,20 +38,35 @@ const SignUp = () => {
   //     })
   //     .catch((err) => setSignUpError(err.message));
   // };
+
+  // save user data
+  const saveUser = (name, email) => {
+    const userInfo = { name, email };
+    fetch("http://localhost:5000/allUsers", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(userInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success(data.result);
+        navigate("/");
+      });
+  };
+
   const handleSignUp = (data) => {
     setSignUpError("");
     createUser(data.email, data.password)
       .then((result) => {
-        const user = result.user;
-        console.log(user);
-        toast.success("User Created Successfully.");
+        // const user = result.user;
         const userInfo = {
           displayName: data.name,
         };
         updateUser(userInfo)
           .then(() => {
-            navigate("/");
-            console.log("fuck");
+            saveUser(data.name, data.email);
           })
           .catch((err) => console.log(err));
       })
