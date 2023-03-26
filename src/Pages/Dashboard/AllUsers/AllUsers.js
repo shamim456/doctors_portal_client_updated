@@ -3,7 +3,11 @@ import React from "react";
 import Loading from "../../Shared/Loading/Loading";
 
 const AllUsers = () => {
-  const { data: allUsers, isLoading } = useQuery({
+  const {
+    data: allUsers,
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["allUser"],
     queryFn: async () => {
       const res = await fetch(`http://localhost:5000/allUsers`);
@@ -16,6 +20,19 @@ const AllUsers = () => {
     return <Loading></Loading>;
   }
 
+  const handleMakeAdmin = (id) => {
+    fetch(`http://localhost:5000/user/admin/${id}`, {
+      method: "PUT",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("access-token")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        refetch();
+      });
+  };
+
   return (
     <div>
       <h1 className="font-bold text-3xl text-primary mb-8">My Appointment</h1>
@@ -27,15 +44,30 @@ const AllUsers = () => {
               <th></th>
               <th>Name</th>
               <th>Email</th>
+              <th>Admin</th>
+              <th>DELETE</th>
             </tr>
           </thead>
           <tbody>
             {/* row 1 */}
-            {allUsers.map((appointment, i) => (
-              <tr key={appointment._id}>
+            {allUsers.map((user, i) => (
+              <tr key={user._id}>
                 <th>{i + 1}</th>
-                <td>{appointment.name}</td>
-                <td>{appointment.email}</td>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                <td>
+                  {user?.role !== "admin" && (
+                    <button
+                      className="btn btn-sm"
+                      onClick={() => handleMakeAdmin(user._id)}
+                    >
+                      Make Admin
+                    </button>
+                  )}
+                </td>
+                <td>
+                  <button className="btn btn-sm bg-denger ">Delete</button>
+                </td>
               </tr>
             ))}
           </tbody>
