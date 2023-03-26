@@ -1,36 +1,44 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider";
+import useToken from "../../Hooks/useToken";
 
 const Login = () => {
   const [loginError, setLoginError] = useState("");
+  const [loginUserEmail, setLoginUserEmail] = useState("");
+
+  //custome hook
+  const [token] = useToken(loginUserEmail);
   //for redirect private route
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
-  console.log(from);
-
   // for react hook form
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
-
   const { signIn } = useContext(AuthContext);
 
-  // login handler
-  const handleLogIn = (data) => {
-    setLoginError("");
+  if (token) {
+    navigate(from, { replace: true });
+  }
 
-    console.log(data);
+  // login handler
+  const handleLogin = (data) => {
+    setLoginError("");
     signIn(data.email, data.password)
       .then((result) => {
-        console.log(result.user);
-        navigate(from, { replace: true });
+        const user = result.user;
+        setLoginUserEmail(data.email);
+        toast.success("Login Successful");
       })
-      .catch((err) => setLoginError(err.message));
+      .catch((error) => {
+        setLoginError(error.message);
+      });
   };
   return (
     <div className="text-center h-screen">
@@ -40,7 +48,7 @@ const Login = () => {
           <div className="card-body">
             <div className="flex flex-col w-full border-opacity-50">
               {/* react hook form */}
-              <form onSubmit={handleSubmit(handleLogIn)}>
+              <form onSubmit={handleSubmit(handleLogin)}>
                 {/* name or email input */}
                 <label className="label">
                   <span className="label-text">Email</span>

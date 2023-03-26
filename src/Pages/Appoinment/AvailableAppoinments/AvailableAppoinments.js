@@ -30,7 +30,6 @@ const AvailableAppoinments = ({ selectedDate, setSelectedDate }) => {
     return <Loading></Loading>;
   }
 
-  console.log(appoinmentOptions);
   return (
     <section className="mt-16">
       <p className="text-primary font-bold text-lg text-center">

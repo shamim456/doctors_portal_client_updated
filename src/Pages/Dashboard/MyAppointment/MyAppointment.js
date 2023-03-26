@@ -25,7 +25,6 @@ const MyAppointment = () => {
     return <Loading></Loading>;
   }
 
-  console.log(myAppointment);
   return (
     <div>
       <h1 className="font-bold text-3xl text-primary mb-8">My Appointment</h1>
