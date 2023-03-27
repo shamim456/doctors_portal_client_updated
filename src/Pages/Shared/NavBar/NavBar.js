@@ -30,21 +30,21 @@ const NavBar = () => {
       </li>
       <li>
         {" "}
-        <Link to="about"> About </Link>{" "}
+        <Link to="/about"> About </Link>{" "}
       </li>
       <li>
         {" "}
-        <Link to="contact"> Contact-Us </Link>{" "}
+        <Link to="/contact"> Contact-Us </Link>{" "}
       </li>
       {user?.uid ? (
         <>
           <li>
             {" "}
-            <Link to="dashboard"> Dashboard </Link>{" "}
+            <Link to="/dashboard"> Dashboard </Link>{" "}
           </li>
           <li>
             {" "}
-            <Link to="login" onClick={signOut}>
+            <Link to="/login" onClick={signOut}>
               {" "}
               Log Out{" "}
             </Link>{" "}
@@ -53,7 +53,7 @@ const NavBar = () => {
       ) : (
         <li>
           {" "}
-          <Link to="login"> Login </Link>{" "}
+          <Link to="/login"> Login </Link>{" "}
         </li>
       )}
     </>
@@ -86,7 +86,7 @@ const NavBar = () => {
             {menuItems}
           </ul>
         </div>
-        <Link className="btn btn-ghost normal-case text-xl">daisyUI</Link>
+        <Link className="btn btn-ghost normal-case text-xl">Dental Health</Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{menuItems}</ul>

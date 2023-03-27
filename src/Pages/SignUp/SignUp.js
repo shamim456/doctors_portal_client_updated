@@ -24,7 +24,6 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   if (token) {
-    toast.success("Created Account Successfully");
     navigate("/");
   }
 
@@ -41,7 +40,7 @@ const SignUp = () => {
       .then((res) => res.json())
       .then((data) => {
         setcratedUserEmail(email);
-        // toast.success(data.result);
+        toast.success(data.result);
       });
   };
 
