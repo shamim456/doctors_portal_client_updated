@@ -17,37 +17,73 @@ const ContactUs = () => {
     });
   }, []);
   return (
-    <div className="contact-container h-screen w-full flex items-center">
+    // <div className="contact-container h-screen w-full flex items-center">
+    //   <div className="text-center w-full">
+    //     <h4 className="text-primary font-bold text-3xl" data-aos="fade-right">
+    //       Contact Us
+    //     </h4>
+    //     <h1 className="text-4xl mx-auto text-white" data-aos="fade-left">
+    //       Stay connected with us
+    //     </h1>
+    //     <div className="mt-12">
+    //       <form className="flex flex-col items-center justify-center">
+    //         <input
+    //           type="text"
+    //           placeholder="Type here"
+    //           className="input input-bordered input-info w-[450px]"
+    //           data-aos="fade-left"
+    //         />
+    //         <input
+    //           type="text"
+    //           placeholder="Type here"
+    //           className="input input-bordered input-info  w-[450px] mt-4"
+    //           data-aos="fade-right"
+    //         />
+    //         <textarea
+    //           className="textarea textarea-info w-[450px] h-[136px] mt-4"
+    //           placeholder="Write Here..."
+    //           data-aos="fade-down"
+    //         ></textarea>
+    //         <input
+    //           data-aos="fade-up"
+    //           type="submit"
+    //           className="btn btn-primary bg-gradient-to-r from-primary to-secondary text-white mt-[40px]"
+    //         />
+    //       </form>
+    //     </div>
+    //   </div>
+    // </div>
+    <div className="contact-container w-full flex items-center overflow-hidden">
       <div className="text-center w-full">
-        <h4 className="text-primary font-bold text-lg" data-aos="fade-right">
-          Testimonial
+        <h4 className="text-primary font-bold text-3xl" data-aos="fade-right">
+          Contact Us
         </h4>
         <h1 className="text-4xl mx-auto text-white" data-aos="fade-left">
-          What Our Patients Says
+          Stay connected with us
         </h1>
         <div className="mt-12">
           <form className="flex flex-col items-center justify-center">
             <input
               type="text"
               placeholder="Type here"
-              className="input input-bordered input-info w-[450px]"
+              className="input input-bordered input-info w-full md:w-[450px]"
               data-aos="fade-left"
             />
             <input
               type="text"
               placeholder="Type here"
-              className="input input-bordered input-info  w-[450px] mt-4"
+              className="input input-bordered input-info w-full md:w-[450px] mt-4"
               data-aos="fade-right"
             />
             <textarea
-              className="textarea textarea-info w-[450px] h-[136px] mt-4"
-              placeholder="Bio"
+              className="textarea textarea-info w-full md:w-[450px] h-[136px] mt-4"
+              placeholder="Write Here..."
               data-aos="fade-down"
             ></textarea>
             <input
               data-aos="fade-up"
               type="submit"
-              className="btn btn-primary bg-gradient-to-r from-primary to-secondary text-white mt-[50px]"
+              className="btn btn-primary bg-gradient-to-r from-primary to-secondary text-white mt-4 md:mt-[40px]"
             />
           </form>
         </div>

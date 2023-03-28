@@ -18,25 +18,25 @@ const Banner = () => {
     });
   }, []);
   return (
-    <div>
-      <div className="hero-content flex-col lg:flex-row-reverse">
-        <img
-          src={bannerImage}
-          className="w-1/2 rounded-lg shadow-2xl"
-          alt=""
-          data-aos="fade-left"
-        />
-        <div data-aos="fade-right">
-          <h1 className="text-5xl font-bold">Box Office News!</h1>
-          <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
-          </p>
-          <button className="btn btn-primary bg-gradient-to-r from-primary to-secondary text-white ">
-            Get Started
-          </button>
-        </div>
+    <div class="flex flex-col lg:flex-row-reverse items-center justify-center lg:justify-between">
+      <img
+        src={bannerImage}
+        class="w-full lg:w-1/2 rounded-lg shadow-2xl mb-8 lg:mb-0"
+        alt=""
+        data-aos="fade-left"
+      />
+      <div class="text-center lg:text-left" data-aos="fade-right">
+        <h1 class="text-3xl lg:text-5xl font-bold mb-4">
+          Your New Smile Starts Here
+        </h1>
+        <p class="mb-8 lg:mb-12 text-gray-600">
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the.
+        </p>
+        <button class="btn btn-primary bg-gradient-to-r from-primary to-secondary text-white px-6 py-3 rounded-full hover:shadow-lg">
+          Get Started
+        </button>
       </div>
     </div>
   );

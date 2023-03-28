@@ -70,22 +70,41 @@ const Testimonials = () => {
     });
   }, []);
   return (
-    <div className="testimonials-container w-full h-[514px] text-center mt-[108px]">
-      <h4 className="text-primary font-bold text-lg" data-aos="fade-right">
+    // <div className="testimonials-container w-full h-[514px] text-center mt-[108px]">
+    //   <h4 className="text-primary font-bold text-3xl" data-aos="fade-right">
+    //     Testimonial
+    //   </h4>
+    //   <h1 className="text-4xl mx-auto text-accent mt-4" data-aos="fade-left">
+    //     What Our Patients Says
+    //   </h1>
+    //   <div
+    //     data-aos="fade-up"
+    //     className="w-full grid gap-6  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto mt-[146px]"
+    //   >
+    //     {testimonials.map((testimonial) => (
+    //       <Testimonial
+    //         key={testimonial.id}
+    //         testimonial={testimonial}
+    //       ></Testimonial>
+    //     ))}
+    //   </div>
+    // </div>
+    <div className="testimonials-container w-full text-center mt-12 lg:mt-32 overflow-hidden">
+      <h4 className="text-primary font-bold text-3xl" data-aos="fade-right">
         Testimonial
       </h4>
-      <h1 className="text-4xl mx-auto text-accent" data-aos="fade-left">
-        What Our Patients Says
+      <h1
+        className="text-2xl lg:text-4xl mx-auto text-accent mt-4"
+        data-aos="fade-left"
+      >
+        What Our Patients Say
       </h1>
       <div
         data-aos="fade-up"
-        className="w-full grid gap-6  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto mt-[146px]"
+        className="w-full grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mx-auto mt-6 lg:mt-12"
       >
         {testimonials.map((testimonial) => (
-          <Testimonial
-            key={testimonial.id}
-            testimonial={testimonial}
-          ></Testimonial>
+          <Testimonial key={testimonial.id} testimonial={testimonial} />
         ))}
       </div>
     </div>
