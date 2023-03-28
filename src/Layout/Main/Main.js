@@ -7,7 +7,7 @@ const Main = () => {
   return (
     <div>
       <NavBar></NavBar>
-      <Outlet></Outlet>
+      <Outlet data-aos="fade-down"></Outlet>
       <Footer></Footer>
     </div>
   );

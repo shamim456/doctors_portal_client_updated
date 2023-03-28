@@ -6,13 +6,14 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Loading from "../../Shared/Loading/Loading";
 
 const Login = () => {
+  const [loading, setLoading] = useState(false);
   // for react hook form
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
-
+  const navigate = useNavigate();
   const imageHostKey = process.env.REACT_APP_IMAGEBB_KEY;
 
   // react query
@@ -28,16 +29,17 @@ const Login = () => {
   });
 
   // loading
-  if (isLoading) {
+  if (isLoading || loading) {
     return <Loading></Loading>;
   }
 
   // login handler
   const handleAddDoctor = (data) => {
+    setLoading(true);
     const image = data.photo[0];
     const formData = new FormData();
     formData.append("image", image);
-    const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imageHostKey}`;
+    const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
     fetch(url, {
       method: "POST",
       body: formData,
@@ -65,8 +67,9 @@ const Login = () => {
             .then((res) => res.json())
             .then((result) => {
               console.log(result);
+              setLoading(false);
               toast.success(`${data.name} is added successfully`);
-              // navigate("/dashboard/managedoctors");
+              navigate("/dashboard/allDoctors");
             });
         }
       });

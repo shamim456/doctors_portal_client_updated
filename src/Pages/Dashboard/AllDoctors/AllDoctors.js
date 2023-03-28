@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import Loading from "../../Shared/Loading/Loading";
 
 const AllDoctors = () => {
   const { data: doctors, isLoading } = useQuery({
@@ -11,7 +12,9 @@ const AllDoctors = () => {
     },
   });
 
-  console.log(doctors);
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
   return (
     <div>
       <h1 className="font-bold text-3xl text-primary mb-8">All Doctors</h1>

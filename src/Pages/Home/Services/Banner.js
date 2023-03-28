@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import treatmentImage from "../../../assets/images/treatment.png";
+// AOS
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Banner = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 500,
+      easing: "ease-in-out",
+      once: true,
+      offset: 100,
+      // eslint-disable-next-line no-dupe-keys
+      once: false,
+    });
+  }, []);
   return (
     <div className="hero w-full mt-36">
       <div className="hero-content flex-col lg:flex-row w-[1087px] h-[576px] gap-8">
@@ -9,8 +22,9 @@ const Banner = () => {
           src={treatmentImage}
           className="rounded-lg shadow-2xl h-[576px]"
           alt=""
+          data-aos="fade-right"
         />
-        <div className="text-left ml-24">
+        <div className="text-left ml-24" data-aos="fade-left">
           <h1 className="text-5xl font-bold text-justify">
             Exceptional Dental Care, on Your Terms
           </h1>
