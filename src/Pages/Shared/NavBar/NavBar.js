@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 
 const NavBar = () => {
   // firebase user
   const { user, logOut } = useContext(AuthContext);
+  const location = useLocation();
 
   // log Out Handler
   const signOut = () => {
@@ -59,6 +60,8 @@ const NavBar = () => {
     </>
   );
 
+  console.log(); // logs the current URL path
+
   return (
     <div className="navbar bg-base-100 flex justify-between">
       <div className="navbar-start">
@@ -91,26 +94,28 @@ const NavBar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 font-bold">{menuItems}</ul>
       </div>
-      <label
-        tabIndex={2}
-        className="btn btn-ghost lg:hidden"
-        htmlFor="dashboard-drawer"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
+      {location.pathname === "/dashboard" && (
+        <label
+          tabIndex={2}
+          className="btn btn-ghost lg:hidden"
+          htmlFor="dashboard-drawer"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M4 6h16M4 12h8m-8 6h16"
-          />
-        </svg>
-      </label>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h8m-8 6h16"
+            />
+          </svg>
+        </label>
+      )}
     </div>
   );
 };

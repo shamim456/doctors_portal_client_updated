@@ -69,7 +69,7 @@ const Login = () => {
               console.log(result);
               setLoading(false);
               toast.success(`${data.name} is added successfully`);
-              navigate("/dashboard/allDoctors");
+              navigate("/dashboard/manageDoctors");
             });
         }
       });

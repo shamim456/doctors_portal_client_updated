@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { toast } from "react-hot-toast";
 import Loading from "../../Shared/Loading/Loading";
 
 const AllUsers = () => {
@@ -29,6 +30,18 @@ const AllUsers = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        refetch();
+      });
+  };
+
+  const handleDeleteUser = (id) => {
+    const url = `http://localhost:5000/allUsers/${id}`;
+    fetch(url, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success(data.result);
         refetch();
       });
   };
@@ -66,7 +79,12 @@ const AllUsers = () => {
                   )}
                 </td>
                 <td>
-                  <button className="btn btn-sm bg-denger ">Delete</button>
+                  <button
+                    className="btn btn-sm bg-denger"
+                    onClick={() => handleDeleteUser(user._id)}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
