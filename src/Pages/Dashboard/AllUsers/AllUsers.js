@@ -74,6 +74,49 @@ const AllUsers = () => {
         </table>
       </div>
     </div>
+
+    // <div className="w-full">
+    //   <h1 className="font-bold text-3xl text-primary mb-8">My Appointment</h1>
+    //   <div className="overflow-x-auto">
+    //     <table className="table-auto w-full">
+    //       {/* head */}
+    //       <thead>
+    //         <tr>
+    //           <th className="py-4"></th>
+    //           <th className="py-4">Name</th>
+    //           <th className="py-4">Email</th>
+    //           <th className="py-4">Admin</th>
+    //           <th className="py-4">DELETE</th>
+    //         </tr>
+    //       </thead>
+    //       <tbody>
+    //         {/* row 1 */}
+    //         {allUsers.map((user, i) => (
+    //           <tr key={user._id}>
+    //             <td className="border px-4 py-2">{i + 1}</td>
+    //             <td className="border px-4 py-2">{user.name}</td>
+    //             <td className="border px-4 py-2">{user.email}</td>
+    //             <td className="border px-4 py-2">
+    //               {user?.role !== "admin" && (
+    //                 <button
+    //                   className="btn btn-sm"
+    //                   onClick={() => handleMakeAdmin(user._id)}
+    //                 >
+    //                   Make Admin
+    //                 </button>
+    //               )}
+    //             </td>
+    //             <td className="border px-4 py-2">
+    //               <button className="btn btn-sm bg-danger text-white">
+    //                 Delete
+    //               </button>
+    //             </td>
+    //           </tr>
+    //         ))}
+    //       </tbody>
+    //     </table>
+    //   </div>
+    // </div>
   );
 };
 
