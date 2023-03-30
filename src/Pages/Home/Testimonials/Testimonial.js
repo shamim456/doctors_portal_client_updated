@@ -1,5 +1,6 @@
 import React from "react";
 
+
 const Testimonial = ({ testimonial }) => {
   const { name, adress, review, image } = testimonial;
   return (
@@ -40,4 +41,4 @@ const Testimonial = ({ testimonial }) => {
 };
 
 export default Testimonial;
-// ml-[-100px]
+
