@@ -1,6 +1,5 @@
 import React from "react";
 
-
 const Testimonial = ({ testimonial }) => {
   const { name, adress, review, image } = testimonial;
   return (
@@ -21,7 +20,10 @@ const Testimonial = ({ testimonial }) => {
     //     </div>
     //   </div>
     // </div>
-    <div class="card w-full sm:w-[440px] h-auto sm:h-[310px] shadow-xl">
+    <div
+      class="card w-full sm:w-[440px] h-auto sm:h-[310px] shadow-xl"
+      style={{ cursor: "pointer" }}
+    >
       <div class="card-body">
         <p class="text-justify">{review}</p>
         <div class="text-center mt-9 flex items-center justify-around sm:w-4/5">
@@ -41,4 +43,3 @@ const Testimonial = ({ testimonial }) => {
 };
 
 export default Testimonial;
-
