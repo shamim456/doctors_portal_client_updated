@@ -17,11 +17,14 @@ import Reviews from "../../Pages/Reviews/Reviews";
 import SignUp from "../../Pages/SignUp/SignUp";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import Payment from "../../Pages/Dashboard/Payment/Payment";
+import ShowError from "../../Pages/Shared/ShowError/ShowError";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <ShowError></ShowError>,
     children: [
       {
         path: "/",
@@ -65,6 +68,7 @@ const router = createBrowserRouter([
         <DashboardLayout></DashboardLayout>
       </PrivateRoute>
     ),
+    errorElement: <ShowError></ShowError>,
     children: [
       {
         path: "/dashboard",
@@ -105,6 +109,12 @@ const router = createBrowserRouter([
             <AllAppointments></AllAppointments>
           </AdminRoute>
         ),
+      },
+      {
+        path: "/dashboard/payment/:id",
+        element: <Payment></Payment>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/bookingTreatment/${params.id}`),
       },
     ],
   },
