@@ -63,6 +63,16 @@ const testimonials = [
 ];
 
 const Testimonials = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 500,
+      easing: "ease-in-out",
+      once: true,
+      offset: 100,
+      // eslint-disable-next-line no-dupe-keys
+      once: false,
+    });
+  }, []);
   const settings = {
     items: 3,
     infinite: true,
