@@ -63,6 +63,11 @@ const DashboardLayout = () => {
           <ul className="menu p-4 max-w-xs md:max-w-sm lg:max-w-md bg-base-100 text-base-content">
             {/* <!-- Sidebar content here --> */}
             <li>
+              {isAdmin && (
+                <Link to="/dashboard/allAppointments">All Appointments</Link>
+              )}
+            </li>
+            <li>
               <Link to="/dashboard">My Appointment</Link>
               <Link to="/dashboard/allDoctors">All Doctors</Link>
             </li>
