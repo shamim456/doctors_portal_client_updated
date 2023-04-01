@@ -19,6 +19,7 @@ import AdminRoute from "../AdminRoute/AdminRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Payment from "../../Pages/Dashboard/Payment/Payment";
 import ShowError from "../../Pages/Shared/ShowError/ShowError";
+import RecivedPaymentList from "../../Pages/Dashboard/RecievedPaymentList/RecivedPaymentList";
 
 const router = createBrowserRouter([
   {
@@ -115,6 +116,14 @@ const router = createBrowserRouter([
         element: <Payment></Payment>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/bookingTreatment/${params.id}`),
+      },
+      {
+        path: "/dashboard/allRecievedPayments",
+        element: (
+          <AdminRoute>
+            <RecivedPaymentList></RecivedPaymentList>
+          </AdminRoute>
+        ),
       },
     ],
   },
