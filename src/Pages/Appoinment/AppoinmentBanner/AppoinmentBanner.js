@@ -5,6 +5,11 @@ import "./AppoinmentBanner.css";
 import { DayPicker } from "react-day-picker";
 
 const AppoinmentBanner = ({ selectedDate, setSelectedDate }) => {
+  // if (selectedDate === setSelectedDate) {
+  //   return;
+  // }
+
+  console.log(selectedDate + 'sdfjalkjdfaljfalk');
   return (
     // <header className="hero h-[80vh]">
     //   <div className="hero-content flex-col lg:flex-row-reverse">

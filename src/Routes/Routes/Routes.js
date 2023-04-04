@@ -20,6 +20,7 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Payment from "../../Pages/Dashboard/Payment/Payment";
 import ShowError from "../../Pages/Shared/ShowError/ShowError";
 import RecivedPaymentList from "../../Pages/Dashboard/RecievedPaymentList/RecivedPaymentList";
+import VerifyEmail from "../../Pages/VerifyEmail/VerifyEmail";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <ContactUsMain></ContactUsMain>,
+      },
+      {
+        path: "/verifyEmail",
+        element: <VerifyEmail></VerifyEmail>,
       },
     ],
   },

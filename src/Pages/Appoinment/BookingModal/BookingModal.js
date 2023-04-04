@@ -2,14 +2,18 @@ import { format } from "date-fns";
 import React, { useContext } from "react";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../../../Contexts/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const BookingModal = ({ treatment, selectedDate, setTreatment, refetch }) => {
   const { name, slots, Price } = treatment; // it's appointment details
   const date = format(selectedDate, "PP"); // formated date
-console.log(Price)
+  console.log(Price);
   // firebase user info
   const { user } = useContext(AuthContext);
-  console.log(user);
+  console.log(JSON.stringify(user) + "ffffffffffffffff");
+
+  // react router
+  const navigate = useNavigate();
 
   const handleModel = (e) => {
     e.preventDefault();
@@ -28,28 +32,32 @@ console.log(Price)
       patientName,
       patientEmail,
       patientPhoneNumber,
-      Price
+      Price,
     };
 
-    fetch("http://localhost:5000/bookingTreatment", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(bookingInfo),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.result) {
-          toast.success(data.result);
-        }
-        if (data.error) {
-          toast.error(data.error);
-        }
-        setTreatment(null);
-        refetch();
-        form.reset();
-      });
+    if (user.emailVerified) {
+      fetch("http://localhost:5000/bookingTreatment", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(bookingInfo),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.result) {
+            toast.success(data.result);
+          }
+          if (data.error) {
+            toast.error(data.error);
+          }
+          setTreatment(null);
+          refetch();
+          form.reset();
+        });
+    } else {
+      navigate("/verifyEmail");
+    }
   };
   return (
     <>

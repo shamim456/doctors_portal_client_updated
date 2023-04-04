@@ -18,13 +18,13 @@ const SignUp = () => {
   } = useForm();
 
   // firebase
-  const { createUser, updateUser } = useContext(AuthContext);
+  const { createUser, updateUser, verifyEmail } = useContext(AuthContext);
 
   // react-router
   const navigate = useNavigate();
 
   if (token) {
-    navigate("/");
+    navigate("/verifyEmail");
   }
 
   // save user data function
@@ -43,12 +43,13 @@ const SignUp = () => {
         toast.success(data.result);
       });
   };
-
+  // console.log(JSON.stringify(auth.currentUser));
   const handleSignUp = (data) => {
     setSignUpError("");
     createUser(data.email, data.password)
       .then((result) => {
         // const user = result.user;
+        verifyEmail();
         const userInfo = {
           displayName: data.name,
         };

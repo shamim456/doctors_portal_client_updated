@@ -37,7 +37,7 @@ const NavBar = () => {
         {" "}
         <Link to="/contact"> Contact-Us </Link>{" "}
       </li>
-      {user?.uid ? (
+      {user?.emailVerified ? (
         <>
           <li>
             {" "}
