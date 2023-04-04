@@ -4,6 +4,7 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
+  sendEmailVerification,
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
@@ -18,6 +19,12 @@ const AuthProvider = ({ children }) => {
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
+  };
+
+  // verify email
+  const verifyEmail = () => {
+    console.log(JSON.stringify(auth.currentUser) + "shamim fucking");
+    return sendEmailVerification(auth.currentUser);
   };
 
   // update user profile
@@ -46,7 +53,16 @@ const AuthProvider = ({ children }) => {
 
     return () => unsubcribe();
   }, []);
-  const authInfo = { createUser, signIn, logOut, user, updateUser, loading };
+  const authInfo = {
+    createUser,
+    signIn,
+    logOut,
+    user,
+    updateUser,
+    loading,
+    verifyEmail,
+    auth,
+  };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );
