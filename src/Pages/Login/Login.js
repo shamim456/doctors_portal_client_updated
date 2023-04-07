@@ -32,7 +32,6 @@ const Login = () => {
     setLoginError("");
     signIn(data.email, data.password)
       .then((result) => {
-        const user = result.user;
         setLoginUserEmail(data.email);
         toast.success("Login Successful");
       })
@@ -107,7 +106,9 @@ const Login = () => {
                 )}
                 <label className="label">
                   <span className="label-text-alt">
-                    forget password Left label
+                    <Link to="/forgetPassword" className="text-blue-600">
+                      Forget Password?
+                    </Link>
                   </span>
                 </label>
                 {/* <p>{data}</p> */}

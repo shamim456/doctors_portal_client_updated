@@ -5,6 +5,7 @@ import {
   getAuth,
   onAuthStateChanged,
   sendEmailVerification,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
@@ -24,6 +25,11 @@ const AuthProvider = ({ children }) => {
   // verify email
   const verifyEmail = () => {
     return sendEmailVerification(auth.currentUser);
+  };
+
+  // forget password
+  const forgetPassword = (userEmail) => {
+    return sendPasswordResetEmail(auth, userEmail);
   };
 
   // update user profile
@@ -61,6 +67,7 @@ const AuthProvider = ({ children }) => {
     loading,
     verifyEmail,
     auth,
+    forgetPassword,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

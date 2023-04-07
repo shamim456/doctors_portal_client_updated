@@ -6,7 +6,6 @@ import { Toaster } from "react-hot-toast";
 // react aos
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useEffect } from "react";
 
 function App() {
   // aos

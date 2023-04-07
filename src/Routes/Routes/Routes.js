@@ -21,6 +21,7 @@ import Payment from "../../Pages/Dashboard/Payment/Payment";
 import ShowError from "../../Pages/Shared/ShowError/ShowError";
 import RecivedPaymentList from "../../Pages/Dashboard/RecievedPaymentList/RecivedPaymentList";
 import VerifyEmail from "../../Pages/VerifyEmail/VerifyEmail";
+import ForgetPassword from "../../Pages/ForgetPassword/ForgetPassword";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
       {
         path: "/verifyEmail",
         element: <VerifyEmail></VerifyEmail>,
+      },
+      {
+        path: "/forgetPassword",
+        element: <ForgetPassword></ForgetPassword>,
       },
     ],
   },
