@@ -35,8 +35,6 @@ const AllDoctors = () => {
     return <Loading></Loading>;
   }
 
-  console.log(doctors);
-
   //slider setting
   const settings = {
     items: 3,

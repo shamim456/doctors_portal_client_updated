@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Loading from "../../Shared/Loading/Loading";
 
 const Login = () => {
@@ -47,7 +47,6 @@ const Login = () => {
       .then((res) => res.json())
       .then((imageData) => {
         if (imageData.success) {
-          console.log(imageData.data.url);
           const doctor = {
             name: data.name,
             email: data.email,
@@ -66,7 +65,6 @@ const Login = () => {
           })
             .then((res) => res.json())
             .then((result) => {
-              console.log(result);
               setLoading(false);
               toast.success(`${data.name} is added successfully`);
               navigate("/dashboard/manageDoctors");
@@ -132,10 +130,9 @@ const Login = () => {
                     required: "Required specialty",
                   })}
                   className="select select-bordered w-full max-w-xs"
+                  defaultValue="Please Select A Specialty"
                 >
-                  <option disabled selected>
-                    Please Select A Specialty
-                  </option>
+                  <option disabled>Please Select A Specialty</option>
                   {specialties.length > 0 &&
                     specialties?.map((specialty) => (
                       <option key={specialty._id} value={specialty.name}>
@@ -152,24 +149,8 @@ const Login = () => {
                   {...register("photo", {
                     required: "Required Photo",
                   })}
-                  //   placeholder="Your Password"
-                  //   className="input input-bordered w-full max-w-xs"
                   type="file"
                 />
-                {/* <label className="label">
-                  <span className="label-text-alt text-red-600">
-                    {errors?.name?.message}
-                  </span>
-                </label> */}
-
-                {/* for login error */}
-                {/* {loginError && (
-                  <label className="label">
-                    <span className="label-text-alt text-red-600">
-                      {loginError.split("/")[1].toUpperCase()}
-                    </span>
-                  </label>
-                )} */}
 
                 <input
                   className="btn btn-accent w-full"

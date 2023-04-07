@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 const CheckOutForm = ({ bookingDetails }) => {
   //strip card error
@@ -13,9 +14,14 @@ const CheckOutForm = ({ bookingDetails }) => {
   // react-router
   const navigate = useNavigate();
 
-  const { Price, _id, patientName,treatmentName, patientEmail, appoinmentDate } =
-    bookingDetails.result;
-  console.log(Price + "fucking price");
+  const {
+    Price,
+    _id,
+    patientName,
+    treatmentName,
+    patientEmail,
+    appoinmentDate,
+  } = bookingDetails.result;
   // for stripe
   const stripe = useStripe();
   const elements = useElements();
@@ -45,13 +51,12 @@ const CheckOutForm = ({ bookingDetails }) => {
       return;
     }
 
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
+    const { error } = await stripe.createPaymentMethod({
       type: "card",
       card,
     });
 
     if (error) {
-      console.log(error);
       setCardError(error.message);
     } else {
       setCardError("");
@@ -75,9 +80,7 @@ const CheckOutForm = ({ bookingDetails }) => {
       setCardError(confirmError.message);
       return;
     }
-    console.log(paymentIntent);
     if (paymentIntent.status === "succeeded") {
-      console.log("card info", card);
       // store payment info in the database
       const payment = {
         Price,
@@ -86,7 +89,7 @@ const CheckOutForm = ({ bookingDetails }) => {
         bookingId: _id,
         appoinmentDate,
         patientName,
-        treatmentName
+        treatmentName,
       };
       fetch("http://localhost:5000/payment/payments", {
         method: "POST",
@@ -101,6 +104,7 @@ const CheckOutForm = ({ bookingDetails }) => {
           if (data.transactionId) {
             setSuccess("Congrats! your payment completed");
             setTransactionId(paymentIntent.id);
+            toast.success("Payment Recieved Successfully");
             navigate("/dashboard");
           }
         });

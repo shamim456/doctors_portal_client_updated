@@ -23,7 +23,6 @@ const AuthProvider = ({ children }) => {
 
   // verify email
   const verifyEmail = () => {
-    console.log(JSON.stringify(auth.currentUser) + "shamim fucking");
     return sendEmailVerification(auth.currentUser);
   };
 

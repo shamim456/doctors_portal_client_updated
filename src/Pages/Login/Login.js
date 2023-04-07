@@ -127,8 +127,6 @@ const Login = () => {
                 </p>
               </form>
               {/* react hook form */}
-              <div className="divider">OR</div>
-              <button className="btn btn-outline">google</button>
             </div>
           </div>
         </div>

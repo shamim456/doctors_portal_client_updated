@@ -19,7 +19,6 @@ const Payment = () => {
   }
   const { treatmentName, Price, appoinmentDate, slot } =
     bookingForPayment.result;
-  console.log(bookingForPayment);
   return (
     <div>
       <h3 className="text-3xl">Payment for {treatmentName}</h3>

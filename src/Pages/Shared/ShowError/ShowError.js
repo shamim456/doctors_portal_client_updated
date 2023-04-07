@@ -1,5 +1,5 @@
 import React from "react";
-import { useRouteError } from "react-router-dom";
+import { Link, useRouteError } from "react-router-dom";
 
 const ShowError = () => {
   const error = useRouteError();
@@ -11,9 +11,9 @@ const ShowError = () => {
         <p className="text-lg mb-8">
           We apologize for the inconvenience. Please try again later.
         </p>
-        <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
+        <Link to='/' className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
           Go Back
-        </button>
+        </Link>
       </div>
     </div>
   );

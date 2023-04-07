@@ -27,35 +27,6 @@ const MyAppointment = () => {
   }
 
   return (
-    // <div>
-    //   <h1 className="font-bold text-3xl text-primary mb-8">My Appointment</h1>
-    //   <div className="overflow-x-auto">
-    //     <table className="table table-zebra w-full">
-    //       {/* head */}
-    //       <thead>
-    //         <tr>
-    //           <th></th>
-    //           <th>Name</th>
-    //           <th>SERVICE</th>
-    //           <th>Date</th>
-    //           <th>TIME</th>
-    //         </tr>
-    //       </thead>
-    //       <tbody>
-    //         {/* row 1 */}
-    //         {myAppointment.map((appointment, i) => (
-    //           <tr key={appointment._id}>
-    //             <th>{i + 1}</th>
-    //             <td>{appointment.patientName}</td>
-    //             <td>{appointment.treatmentName}</td>
-    //             <td>{appointment.appoinmentDate}</td>
-    //             <td>{appointment.slot}</td>
-    //           </tr>
-    //         ))}
-    //       </tbody>
-    //     </table>
-    //   </div>
-    // </div>
     <div>
       <h1 className="font-bold text-3xl text-primary mb-8 text-center lg:text-left">
         My Appointment

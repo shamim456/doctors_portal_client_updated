@@ -5,42 +5,31 @@ import "./AppoinmentBanner.css";
 import { DayPicker } from "react-day-picker";
 
 const AppoinmentBanner = ({ selectedDate, setSelectedDate }) => {
-  // if (selectedDate === setSelectedDate) {
-  //   return;
-  // }
+  console.log(selectedDate + "sdfjalkjdfaljfalk");
 
-  console.log(selectedDate + 'sdfjalkjdfaljfalk');
+  const handleSelect = (date) => {
+    // Check if the selected date is the same as the current selected date
+    if (date.toDateString() === selectedDate?.toDateString()) {
+      setSelectedDate(null); // Set an invalid date value, e.g., null
+    } else {
+      setSelectedDate(date);
+    }
+  };
+
   return (
-    // <header className="hero h-[80vh]">
-    //   <div className="hero-content flex-col lg:flex-row-reverse">
-    //     <img
-    //       src={chairImage}
-    //       alt="doctor chair"
-    //       className="max-w-sm rounded-lg shadow-2xl"
-    //     />
-    //     <div>
-    //       <DayPicker
-    //         mode="single"
-    //         selected={selectedDate}
-    //         onSelect={setSelectedDate}
-    //       />
-    //     </div>
-    //   </div>
-    // </header>
-
-    <header className="hero h-screen lg:h-[80vh] flex justify-center items-center">
+    <header className="hero h-screen lg:h-[80vh] flex justify-center items-center overflow-hidden">
       <div className="hero-content flex-col lg:flex-row-reverse w-full lg:w-auto max-w-screen-lg mx-auto px-4 lg:px-0">
         <img
           src={chairImage}
           alt="doctor chair"
-          className="w-full lg:w-auto h-auto lg:h-full rounded-lg shadow-2xl"
+          className="w-full lg:w-4/5 h-auto lg:h-[60vh] rounded-lg shadow-2xl lg:order-last"
         />
-        <div className="w-full lg:w-1/3">
+        <div className="w-full lg:w-1/3 mt-8 lg:mt-0">
           <DayPicker
             mode="single"
             selected={selectedDate}
-            onSelect={setSelectedDate}
-            className="w-full"
+            onSelect={handleSelect} // Call the updated function
+            className="w-64 lg:w-full"
           />
         </div>
       </div>

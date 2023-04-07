@@ -14,21 +14,21 @@ const cardInfo = [
     title: "Opening Hours",
     description: "Lorem Ipsum is simply dummy text of the pri",
     icon: watchIcon,
-    bgClass: "bg-primary bg-gradient-to-r from-primary to-secondary",
+    bgclassName: "bg-primary bg-gradient-to-r from-primary to-secondary",
   },
   {
     id: 2,
     title: "Visit our location",
     description: "Brooklyn, NY 10036, United States",
     icon: locationIcon,
-    bgClass: "bg-accent",
+    bgclassName: "bg-accent",
   },
   {
     id: 3,
     title: "Contact us now",
     description: "+000 0000000000",
     icon: phoneIcon,
-    bgClass: "bg-primary bg-gradient-to-r from-primary to-secondary",
+    bgclassName: "bg-primary bg-gradient-to-r from-primary to-secondary",
   },
 ];
 
@@ -44,17 +44,8 @@ const InfoCards = () => {
     });
   }, []);
   return (
-    // <div
-    //   className="grid gap-6  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto"
-    //   data-aos="fade-up"
-    //   data-aos-anchor-placement="bottom-bottom"
-    // >
-    //   {cardInfo.map((card) => (
-    //     <InfoCard key={card.id} card={card}></InfoCard>
-    //   ))}
-    // </div>
     <div
-      class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mx-auto"
+      className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mx-auto"
       data-aos="fade-up"
       data-aos-anchor-placement="bottom-bottom"
     >

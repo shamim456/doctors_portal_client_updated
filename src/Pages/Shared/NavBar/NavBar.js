@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider";
+import { toast } from "react-hot-toast";
 
 const NavBar = () => {
   // firebase user
@@ -12,7 +13,7 @@ const NavBar = () => {
     logOut()
       .then(() => {})
       .catch((err) => {
-        console.log(err);
+        toast.error(err.message);
       });
   };
   // menu items
@@ -37,12 +38,14 @@ const NavBar = () => {
         {" "}
         <Link to="/contact"> Contact-Us </Link>{" "}
       </li>
+      {user?.emailVerified && (
+        <li>
+          {" "}
+          <Link to="/dashboard"> Dashboard </Link>{" "}
+        </li>
+      )}
       {user?.emailVerified ? (
         <>
-          <li>
-            {" "}
-            <Link to="/dashboard"> Dashboard </Link>{" "}
-          </li>
           <li>
             {" "}
             <Link to="/login" onClick={signOut}>
@@ -59,8 +62,6 @@ const NavBar = () => {
       )}
     </>
   );
-
-  console.log(); // logs the current URL path
 
   return (
     <div className="navbar bg-base-100 flex justify-between">
@@ -94,7 +95,13 @@ const NavBar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 font-bold">{menuItems}</ul>
       </div>
-      {location.pathname === "/dashboard" && (
+      {location.pathname === "/dashboard" ||
+      location.pathname === "/dashboard/allAppointments" ||
+      location.pathname === "/dashboard/allDoctors" ||
+      location.pathname === "/dashboard/allUsers" ||
+      location.pathname === "/dashboard/addDoctor" ||
+      location.pathname === "/dashboard/manageDoctors" ||
+      location.pathname === "/dashboard/allRecievedPayments" ? (
         <label
           tabIndex={2}
           className="btn btn-ghost lg:hidden"
@@ -115,7 +122,7 @@ const NavBar = () => {
             />
           </svg>
         </label>
-      )}
+      ) : null}
     </div>
   );
 };

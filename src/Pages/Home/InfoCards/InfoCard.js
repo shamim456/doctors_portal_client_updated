@@ -1,10 +1,10 @@
 import React from "react";
 
 const InfoCard = ({ card }) => {
-  const { title, description, icon, bgClass } = card;
+  const { title, description, icon, bgclassName } = card;
   return (
     <div
-      className={`card lg:card-side shadow-xl ${bgClass} text-white max-w-xs lg:max-w-none w-full h-auto lg:h-[190px] p-6 lg:p-8 flex flex-row lg:flex-col items-center mx-auto sm:w-90 sm:flex-row sm:justify-center`}
+      className={`card lg:card-side shadow-xl ${bgclassName} text-white max-w-xs lg:max-w-none w-full h-auto lg:h-[190px] p-6 lg:p-8 flex flex-row lg:flex-col items-center mx-auto sm:w-90 sm:flex-row sm:justify-center`}
     >
       <figure className="mr-6 lg:mr-0">
         <img src={icon} alt="Album" className="w-16" />

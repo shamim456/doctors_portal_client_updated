@@ -18,23 +18,23 @@ const Banner = () => {
     });
   }, []);
   return (
-    <div class="flex flex-col lg:flex-row-reverse items-center justify-center lg:justify-between">
+    <div className="flex flex-col lg:flex-row-reverse items-center justify-center lg:justify-between mb-8 mt-4">
       <img
         src={bannerImage}
-        class="w-full lg:w-1/2 rounded-lg shadow-2xl mb-8 lg:mb-0"
+        className="w-full lg:w-2/5 rounded-lg shadow-2xl mb-8 lg:mb-0"
         alt=""
         data-aos="fade-left"
       />
-      <div class="text-center lg:text-left" data-aos="fade-right">
-        <h1 class="text-3xl lg:text-5xl font-bold mb-4">
+      <div className="text-center lg:text-left lg:w-3/5" data-aos="fade-right">
+        <h1 className="text-3xl lg:text-5xl font-bold mb-4">
           Your New Smile Starts Here
         </h1>
-        <p class="mb-8 lg:mb-12 text-gray-600">
+        <p className="mb-8 lg:mb-12 text-gray-600">
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the.
         </p>
-        <button class="btn btn-primary bg-gradient-to-r from-primary to-secondary text-white px-6 py-3 rounded-full hover:shadow-lg">
+        <button className="btn btn-primary bg-gradient-to-r from-primary to-secondary text-white px-6 py-3 rounded-full hover:shadow-lg">
           Get Started
         </button>
       </div>

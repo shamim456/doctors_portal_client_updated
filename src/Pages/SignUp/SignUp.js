@@ -43,7 +43,6 @@ const SignUp = () => {
         toast.success(data.result);
       });
   };
-  // console.log(JSON.stringify(auth.currentUser));
   const handleSignUp = (data) => {
     setSignUpError("");
     createUser(data.email, data.password)
@@ -57,7 +56,7 @@ const SignUp = () => {
           .then(() => {
             saveUser(data.name, data.email);
           })
-          .catch((err) => console.log(err));
+          .catch((err) => toast.error(err.message));
       })
       .catch((error) => {
         setSignUpError(error.message);
@@ -168,8 +167,6 @@ const SignUp = () => {
                 </p>
               </form>
               {/* react hook form */}
-              <div className="divider">OR</div>
-              <button className="btn btn-outline">google</button>
             </div>
           </div>
         </div>
